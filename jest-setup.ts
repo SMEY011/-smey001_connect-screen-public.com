@@ -1,3 +1,5 @@
+//docs.swmansion.com/react-native-gesture-handler/docs/guides/testing
+import 'react-native-gesture-handler/jestSetup';
 import { resetToDefaults, configure } from './src/pure';
 import './src/matchers/extend-expect';
 
