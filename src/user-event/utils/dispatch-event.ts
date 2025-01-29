@@ -2,7 +2,7 @@ import type { ReactTestInstance } from 'react-test-renderer';
 import act from '../../act';
 import { isElementMounted } from '../../helpers/component-tree';
 import { formatElement } from '../../helpers/format-element';
-import { logger } from '../../helpers/logger';
+import { debugLogger } from '../../helpers/logger';
 
 /**
  * Basic dispatch event function used by User Event module.
@@ -18,9 +18,9 @@ export function dispatchEvent(element: ReactTestInstance, eventName: string, ...
 
   const handler = getEventHandler(element, eventName);
   if (!handler) {
-    logger.debug(
+    debugLogger.debug(
       `User Event: no event handler for "${eventName}" found on ${formatElement(element, {
-        minimal: true,
+        compact: true,
       })}`,
     );
     return;

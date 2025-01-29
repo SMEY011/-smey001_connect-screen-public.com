@@ -10,7 +10,7 @@ import act from './act';
 import { isElementMounted, isHostElement } from './helpers/component-tree';
 import { formatElement } from './helpers/format-element';
 import { isHostScrollView, isHostTextInput } from './helpers/host-component-names';
-import { logger } from './helpers/logger';
+import { debugLogger } from './helpers/logger';
 import { isPointerEventEnabled } from './helpers/pointer-events';
 import { isEditableTextInput } from './helpers/text-input';
 import { nativeState } from './native-state';
@@ -102,7 +102,7 @@ function findEventHandler(
     if (handlerState.enabled) {
       return handler;
     } else {
-      logger.warn(
+      debugLogger.warn(
         `FireEvent: "${eventName}" event handler is disabled on ${formatElement(element, {
           compact: true,
         })} due to ${handlerState.reason}.`,
@@ -157,11 +157,12 @@ function fireEvent(element: ReactTestInstance, eventName: EventName, ...data: un
 
   const handler = findEventHandler(element, eventName);
   if (!handler) {
-    logger.warn(
+    debugLogger.warn(
       `FireEvent: no enabled event handler for "${eventName}" found on ${formatElement(element, {
         compact: true,
       })} or its ancestors.`,
     );
+
     return;
   }
 
